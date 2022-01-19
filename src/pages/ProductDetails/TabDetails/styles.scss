@@ -1,0 +1,150 @@
+@import '../../../assets/scss/index.scss';
+
+.product-list {
+    list-style: none;
+    padding-left: 25px;
+
+    .p-item {
+        display: flex;
+        padding: 10px 0;
+        align-items: center;
+        font-size: $normal;
+
+        @include for-phone-only {
+            flex-direction: column-reverse;
+        }
+
+        @include for-tablet-portrait-up {
+            flex-direction: row;
+        }
+
+        .img-cal {
+            display: flex;
+            align-items: center;
+            @include for-phone-only {
+                flex-direction: column-reverse;
+            }
+    
+            @include for-tablet-portrait-up {
+                flex-direction: row;
+            }
+        }
+
+        .desc {
+            color: $header_gray;
+        }
+
+        .dish-name {
+            position: relative;
+            font-size: $large;
+
+            &::before,
+            &::after {
+                content: '';
+                display: inline-block;
+                position: absolute;
+            }
+
+            &::before {
+                border: 1px solid $green;
+                height: 16px;
+                width: 16px;
+                left: -25px;
+                top: 0;
+            }
+
+            &::after {
+                height: 10px;
+                width: 10px;
+                border-radius: 50%;
+                background-color: $green;
+                top: 4px;
+                left: -21px;
+            }
+
+            &.non-veg {
+                &::after {
+                    background-color: $non_veg;
+                }
+
+                &::before {
+                    border-color: $non_veg;
+                }
+            }
+        }
+
+        .prize {
+            font-weight: 500;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .calorie-details {
+            margin: 0 30px;
+        }
+
+        .product-image {
+            border-radius: 20px;
+            display: inline-block;
+            width: 150px;
+            height: 100px;
+            background-size: cover;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $light_gray;
+        }
+
+        .not-available {
+            color: $non_veg;
+
+            &.customization {
+                margin: 10px 0;
+            }
+        }
+    }
+
+    .add-delete {
+        color: $white;
+        min-width: 100px;
+        display: inline-flex;
+        justify-content: space-around;
+        border-radius: 50px;
+        align-items: center;
+
+        span {
+            flex: 1;
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            transition: all 0.3s ease;
+            background-color: $add_delete_green;
+        }
+
+        .add,
+        .delete {
+            cursor: pointer;
+
+            &:hover {
+                background-color: $green;
+            }
+        }
+
+        .add {
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+
+        .delete {
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+
+            &.disabled {
+                pointer-events: none;
+                color: $lightest_gray;
+            }
+        }
+    }
+}

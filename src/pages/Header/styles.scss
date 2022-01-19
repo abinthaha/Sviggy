@@ -1,0 +1,54 @@
+@import '../../assets/scss/index.scss';
+
+$badge_background: $red;
+
+.header {
+    display: flex;
+    align-items: center;
+    color: $header_gray;
+
+    h2 {
+        flex: 1;
+    }
+
+    .back-arrow {
+        display: inline-block;
+        margin-right: 20px;
+
+        img {
+            width: 50px;
+        }
+
+        @include for-tablet-landscape-up {
+            display: none;
+        }
+    }
+
+    .order-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-right: 10px;
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            font-size: $small;
+            background-color: $badge_background;
+            display: inline-flex;
+            color: $white;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .cart-img {
+        display: inline-block;
+        margin-left: 10px;
+        width: 30px;
+    }
+}

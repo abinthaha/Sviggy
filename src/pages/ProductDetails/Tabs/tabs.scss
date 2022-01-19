@@ -1,0 +1,31 @@
+@import '../../../assets/scss/index.scss';
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    overflow: auto;
+    padding-bottom: 15px;
+
+    .menu-item {
+        text-align: center;
+        display: inline-block;
+        min-width: 200px;
+        border-bottom: 3px solid $light_gray;
+        padding-bottom: 10px;
+        color: $header_gray;
+        margin-right: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+            color: $red;
+            border-bottom-color: $red;
+        }
+
+        &:hover:not(.active) {
+            border-color: $header_gray;
+            color: $tab_color;
+        }
+    }
+}
