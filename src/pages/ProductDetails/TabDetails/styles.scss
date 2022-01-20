@@ -21,10 +21,11 @@
         .img-cal {
             display: flex;
             align-items: center;
+
             @include for-phone-only {
                 flex-direction: column-reverse;
             }
-    
+
             @include for-tablet-portrait-up {
                 flex-direction: row;
             }
@@ -146,5 +147,13 @@
                 color: $lightest_gray;
             }
         }
+    }
+}
+
+.tab-details {
+    display: none;
+
+    &.active {
+        display: block;
     }
 }

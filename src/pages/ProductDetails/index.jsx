@@ -23,10 +23,9 @@ class ProductDetails extends Component {
             currentTab: index
         })
     }
-
+    
     render() {
         const { menu, currentTab } = this.state;
-        const currentTabDetails = menu && menu.length > 0 ? menu.filter((menuItem, index) => index === currentTab) : [];
         return (
             <>
                 <Tabs
@@ -34,7 +33,17 @@ class ProductDetails extends Component {
                     changeTabs={this.updateTab}
                     tabs={menu && menu.length > 0 ? menu.map(menuItem => menuItem.menu_category) : []}
                 />
-                <TabDetails currentTabDetails={currentTabDetails} />
+                {menu && menu.length > 0 && menu.map((menuItem, menuIndex) => {
+                    return (
+                        <section
+                            key={menuItem.menu_category_id}
+                            className={`tab-details ${menuIndex === currentTab ? 'active' : ''}`}
+                        >
+                            <TabDetails currentTabDetails={menuItem} />
+                        </section>
+                    )
+                })}
+
             </>
         )
     }

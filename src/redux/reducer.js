@@ -1,14 +1,17 @@
 function cartReducer(state = {
-    cartItems: 0
+    cartItems: {}
 }, action) {
     switch (action.type) {
         case 'UPDATE':
             return {
-                cartItems: action.payload
+                cartItems: {
+                    ...state.cartItems,
+                    ...action.payload
+                }
             }
 
-        default:
-            return state
+            default:
+                return state
     }
 }
 

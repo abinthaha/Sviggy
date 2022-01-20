@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 
 
 function ProductHeader(props) {
-    const { resName, count } = props;
+    const { resName, cartItems } = props;
+    const count = Object.values(cartItems).reduce((prev, current) => prev + current, 0);
 
     return (
         <header className='header'>
@@ -25,7 +26,7 @@ function ProductHeader(props) {
 }
 const mapStateToProps = state => {
     return {
-        count: state.cartItems
+        cartItems: state.cartItems
     };
 };
 

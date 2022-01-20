@@ -12,21 +12,14 @@ class TabDetails extends Component {
         }
     }
     static getDerivedStateFromProps(nextProps, prevState) {
-        return ({ tabDetails: nextProps.currentTabDetails[0] })
+        return ({ tabDetails: nextProps.currentTabDetails })
     }
 
     updateCart = (item, count) => {
-        const { cartItems } = this.state;
+        const { cartItems } = this.props;
         let dupItem = JSON.parse(JSON.stringify(cartItems));
         dupItem[item.dish_id] = count;
-        this.setState({
-            ...this.state,
-            cartItems: dupItem
-        }, () => {
-            const cartItems = Object.keys(dupItem).filter(item => dupItem[item] > 0).length;
-            // this.props.updateCart(cartItems);
-            this.props.updateCart(cartItems);
-        });
+        this.props.updateCart(dupItem);
     }
 
     render() {
@@ -36,7 +29,7 @@ class TabDetails extends Component {
                 <ul className='product-list'>
                     {tabDetails && tabDetails.category_dishes.map((pItem, pIndex) => {
                         return (
-                            <ProductItem pItem={pItem} key={pIndex} updateCart={this.updateCart} />
+                            <ProductItem pItem={pItem} key={pItem.dish_id} updateCart={this.updateCart} />
                         )
                     })}
                 </ul>
@@ -52,5 +45,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-const mapStateToProps = undefined;
+const mapStateToProps = state => {
+    return {
+        cartItems: state.cartItems
+    };
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(TabDetails);
