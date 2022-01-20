@@ -23,7 +23,7 @@
             align-items: center;
 
             @include for-phone-only {
-                flex-direction: column-reverse;
+                align-items: baseline;
             }
 
             @include for-tablet-portrait-up {
@@ -37,7 +37,8 @@
 
         .dish-name {
             position: relative;
-            font-size: $large;
+            font-size: $xlarge;
+            margin-top: 0;
 
             &::before,
             &::after {
@@ -83,7 +84,16 @@
         }
 
         .calorie-details {
-            margin: 0 30px;
+            display: flex;
+            margin-right: 20px;
+
+            p {
+                margin-top: 0;
+            }
+
+            .prize {
+                flex: 1;
+            }
         }
 
         .product-image {
@@ -92,6 +102,11 @@
             width: 150px;
             height: 100px;
             background-size: cover;
+
+            @include for-phone-only {
+                width: 100px;
+                height: 70px;
+            }
         }
 
         &:not(:last-child) {
@@ -155,5 +170,130 @@
 
     &.active {
         display: block;
+    }
+}
+
+.category-wrapper {
+
+    .category-name,
+    .addon-name {
+        text-transform: capitalize;
+    }
+
+    .category-name {
+        font-size: $large;
+    }
+}
+
+.addon-wrapper {
+    display: flex;
+
+    .addon-item {
+        display: inline-flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        padding: 10px 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 10px;
+
+        &.selected {
+            box-shadow: 1px 1px 5px 0px #60cae6;
+        }
+
+        .addon-name {
+            font-size: $normal;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .details {
+            display: flex;
+            font-size: $small;
+
+            .left,
+            .right {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                .label {
+                    color: $header_gray;
+                    margin-bottom: 5px;
+                }
+            }
+
+            .left {
+                margin-right: 10px;
+            }
+
+            .right {
+                margin-left: 10px;
+                text-align: right;
+            }
+        }
+
+        &:hover:not(.selected) {
+            box-shadow: 1px 1px 5px 0px $lightest_gray;
+        }
+    }
+}
+
+.product-name {
+    display: flex;
+
+    .name-prize {
+        flex: 1;
+    }
+}
+
+.customization-section {
+    border: 1px solid $off_white;
+    border-radius: 10px;
+    margin-top: 20px;
+
+    .content {
+        display: none;
+        padding: 10px;
+    }
+
+    .ip-check {
+        display: none;
+
+        &-label {
+            color: $non_veg;
+            padding: 10px;
+            display: block;
+            cursor: pointer;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                display: inline-block;
+                width: 15px;
+                height: 3px;
+                background-color: $header_gray;
+                transition: all 0.3s ease;
+            }
+
+            &::after {
+                transform: rotate(90deg);
+            }
+        }
+
+        &:checked {
+            &+.ip-check-label::after {
+                transform: rotate(0deg);
+            }
+
+            &~.content {
+                display: block;
+            }
+        }
     }
 }
