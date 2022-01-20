@@ -97,7 +97,7 @@
         }
 
         .product-image {
-            border-radius: 20px;
+            border-radius: 10px;
             display: inline-block;
             width: 150px;
             height: 100px;
@@ -167,6 +167,10 @@
 
 .tab-details {
     display: none;
+
+    @include for-phone-only {
+        padding: 0 10px;
+    }
 
     &.active {
         display: block;

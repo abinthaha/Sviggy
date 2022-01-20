@@ -1,4 +1,9 @@
+@import '../../assets/scss/index.scss';
+
 main {
     max-width: 80%;
     margin: 0 auto;
+    @include for-phone-only {
+        max-width: 100%;
+    }
 }

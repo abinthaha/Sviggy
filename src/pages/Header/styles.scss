@@ -7,6 +7,9 @@ $badge_background: $red;
     align-items: center;
     color: $header_gray;
 
+    @include for-phone-only {
+        padding: 0 10px;
+    }
     h2 {
         flex: 1;
     }
